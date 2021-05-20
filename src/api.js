@@ -1,5 +1,5 @@
 const request = require('./request');
-const { getTodayDate } = require('../utils');
+const { getTodayDate } = require('./utils');
 const db = require('./db');
 const config = require('./config');
 
@@ -29,7 +29,7 @@ async function getAvailableSessions() {
   for (const center of calendar.centers) {
     for (const session of center.sessions) {
       if (isSessionAvailable(session)) {
-        sessions.push(session);
+        sessions.push({ ...session, address: `${center.address}, ${center.district_name}, ${center.state_name}`, name: center.name });
       }
     }
   }
