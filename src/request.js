@@ -12,7 +12,7 @@ function get(url) {
       });
 
       res.on("end", () => {
-        if (res.statusCode != 200) reject(new Error(`request failed with code ${res.statusCode}: ${body}`));
+        if (res.statusCode >= 300 || res.statusCode < 200) reject(new Error(`request failed with code ${res.statusCode}: ${body}`));
         
         try {
           body = JSON.parse(body);
@@ -28,14 +28,18 @@ function get(url) {
 
 function post(url, body = {}, headers = {}) {
   return new Promise((resolve, reject) => {
+    const urlObj = new URL(url);
+
     const req = https.request({
       method: 'POST',
-      href: url,
+      host: urlObj.hostname,
+      path: urlObj.pathname,
+      port: urlObj.port,
       headers
     }, (res) => {
-      if (res.statusCode != 200) reject(new Error(`request failed with code ${res.statusCode}: ${body}`));
-
       res.on('data', body => {
+        if (res.statusCode >= 300 || res.statusCode < 200) reject(new Error(`request failed with code ${res.statusCode}: ${body}`));
+
         try {
           body = JSON.parse(body);
 
@@ -49,8 +53,8 @@ function post(url, body = {}, headers = {}) {
     req.on('error', error => {
       reject(error);
     })
-  
-    req.write(encodeURIComponent(JSON.stringify(body)));
+    req.write(new URLSearchParams(Object.entries(body)).toString());
+    req.end();
   });
 }
 

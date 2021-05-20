@@ -4,7 +4,8 @@
   "description": "GitHub action to get notification whenever vaccine slot is availble in cowin portal",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "dev": "cross-env NODE_ENV=development node ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "url": "https://github.com/ameerthehacker/covid-vaccine-gh-action/issues"
   },
   "homepage": "https://github.com/ameerthehacker/covid-vaccine-gh-action#readme",
-  "dependencies": {}
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^9.0.2"
+  }
 }
