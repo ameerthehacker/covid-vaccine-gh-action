@@ -12,11 +12,17 @@ if (process.env.NODE_ENV === 'development') {
   validateConfig(config);
 
   try {
+    console.log('Checking for vaccine slots availability');
+    
     const availableSessions = await getAvailableSessions();
 
     await notify('+919566602688', availableSessions);
 
     db.update(availableSessions);
+
+    if (availableSessions.length === 0) {
+      console.log('No vaccine slots available!');
+    }
   }
   catch(err) {
     console.error(err);

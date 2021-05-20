@@ -1,0 +1,34 @@
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  check_vaccine_availability:
+    runs-on: ubuntu-latest
+    env:
+      TWILLIO_ACCOUNT_SID: ${{ secrets.TWILLIO_ACCOUNT_SID }}
+      TWILLIO_AUTH_TOKEN: ${{ secrets.TWILLIO_AUTH_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
+      - name: Run the script
+        run: npm start
+        
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "chore: update db" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+         
