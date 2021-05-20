@@ -2,9 +2,9 @@
   "name": "covid-vaccine-gh-action",
   "version": "0.0.1",
   "description": "GitHub action to get notification whenever vaccine slot is availble in cowin portal",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/ameerthehacker/covid-vaccine-gh-action/issues"
   },
-  "homepage": "https://github.com/ameerthehacker/covid-vaccine-gh-action#readme"
+  "homepage": "https://github.com/ameerthehacker/covid-vaccine-gh-action#readme",
+  "dependencies": {}
 }
