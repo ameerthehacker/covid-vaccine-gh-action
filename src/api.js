@@ -17,7 +17,8 @@ function isSessionAvailable(session) {
   const isAgeMatching = minAgeFilters.filter(minAgeFilter => minAgeFilter >= session.min_age_limit).length > 0;
   const isVaccineMatching = vaccineFilters.filter(vaccineFilter => vaccineFilter.toUpperCase() === session.vaccine).length > 0;
   const hasSlots = session.available_capacity > 0;
-  const isSessionNotified = db.find(session);
+  // in dev we want to ignore the db content for testing
+  const isSessionNotified = db.find(session) && !process.env.NODE_ENV === 'development';
 
   return isAgeMatching && isVaccineMatching && hasSlots && !isSessionNotified;
 }
