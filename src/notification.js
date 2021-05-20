@@ -10,12 +10,12 @@ function formatMessage(sessions) {
   return chunks.join('\n');
 }
 
-async function notify(sendTo, sessions) {
+async function notify(sessions) {
   const twillioAccoutSID = process.env.TWILLIO_ACCOUNT_SID;
   const twillioAuthToken = process.env.TWILLIO_AUTH_TOKEN;
 
   if (!twillioAccoutSID || !twillioAuthToken) {
-    console.log('ERROR: TWILLIO_ACCOUNT_SID or TWILLIO_AUTH_TOKEN is not set in the environment variable so not sending sms');
+    console.error('ERROR: TWILLIO_ACCOUNT_SID or TWILLIO_AUTH_TOKEN environment variables are not set so not sending sms');
 
     process.exit(1);
   }
@@ -27,7 +27,13 @@ async function notify(sendTo, sessions) {
   console.log('Found vaccine slots, sending message...');
   console.log(content);
 
-  sendTo = Array.isArray(sendTo)? sendTo: [sendTo];
+  if (!process.env.SEND_TO) {
+    console.error('ERROR: SEND_TO evironment variale is not set set so not sending the sms');
+
+    process.exit(1);
+  }
+
+  const sendTo = process.env.SEND_TO.split(',').map(mobileNumber => `+91${mobileNumber}`);
 
   for (const mobileNumber of sendTo) {
     await request.post(url, {

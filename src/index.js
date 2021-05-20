@@ -13,10 +13,10 @@ if (process.env.NODE_ENV === 'development') {
 
   try {
     console.log('Checking for vaccine slots availability');
-    
+
     const availableSessions = await getAvailableSessions();
 
-    await notify('+919566602688', availableSessions);
+    await notify(availableSessions);
 
     db.update(availableSessions);
 
