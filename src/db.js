@@ -29,7 +29,9 @@ function update(sessions) {
     data.notifiedSessions = sessions.map(session => session.session_id);
   }
 
-  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+  if (process.env.NODE_ENV !== 'development') {
+    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+  }
 }
 
 function find(session) {

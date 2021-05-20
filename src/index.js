@@ -2,6 +2,7 @@ const config = require('./config');
 const db = require('./db');
 const { getAvailableSessions } = require('./api');
 const { validateConfig } = require('./validator');
+const { formatMessage } = require('./notification');
  
 (async () => {
   validateConfig(config);
@@ -9,11 +10,9 @@ const { validateConfig } = require('./validator');
   try {
     const availableSessions = await getAvailableSessions();
 
-    db.update(availableSessions);
+    console.log(formatMessage(availableSessions));
 
-    for (const availableSession of availableSessions) {
-      console.log(availableSession);
-    }
+    db.update(availableSessions);
   }
   catch(err) {
     console.error(err);
