@@ -16,8 +16,7 @@ jobs:
       - name: Install Tor
         run: |
           sudo apt-get -y install tor
-          sudo sh -c "echo 'EntryNodes {in} StrictNodes1' >> /etc/tor/torrc"
-          sudo sh -c "echo 'ExitNodes {in} StrictNodes1' >> /etc/tor/torrc"
+          sudo sh -c "echo 'ExitNodes 216.10.247.146' >> /etc/tor/torrc"
           sudo /etc/init.d/tor restart
 
       - name: Setup node
@@ -27,9 +26,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Debugging with tmate
-        uses: mxschmitt/action-tmate@v3.5
 
       - name: Run the script
         run: npm start
