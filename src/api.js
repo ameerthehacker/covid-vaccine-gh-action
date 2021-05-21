@@ -20,7 +20,7 @@ function getCalendar() {
 
             resolve(body);
           } catch {
-            reject(new Error(`Error: unable to parse body ${body} as JSON`));
+            reject(new Error(`failed to parse body ${body} as JSON`));
           }
         } else {
           reject(err);
