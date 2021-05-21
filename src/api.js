@@ -2,12 +2,31 @@ const request = require('./request');
 const { getTodayDate } = require('./utils');
 const db = require('./db');
 const config = require('./config');
+const tr = require('tor-request');
 
 function getCalendar() {
   const today = getTodayDate();
   const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
 
-  return request.get(url);
+  if (process.env === 'development') {
+    return request.get(url);
+  } else {
+    return new Promise((resolve, reject) => {
+      tr.request(url, function (err, res, body) {
+        if (!err && res.statusCode == 200) {
+          try {
+            body = JSON.parse(body);
+
+            resolve(body);
+          } catch {
+            reject(`Error: unable to parse body ${body} as JSON`);
+          }
+        } else {
+          reject(err);
+        }
+      })
+    });
+  }
 }
 
 function isSessionAvailable(session) {

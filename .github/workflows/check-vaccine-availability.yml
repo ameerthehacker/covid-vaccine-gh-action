@@ -1,7 +1,6 @@
 name: "Check vaccine availability"
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  push
 
 jobs:
   check_vaccine_availability:
@@ -13,13 +12,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install Tor
+        run: |
+          sudo apt-get -y install tor
+          sudo sh -c "echo 'EntryNodes {in} StrictNodes1' >> /etc/tor/torrc"
+          sudo sh -c "echo 'ExitNodes {in} StrictNodes1' >> /etc/tor/torrc"
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: "12"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Run the script
-        run: npm start
+        run: tor & npm start
         
       - name: Commit files
         run: |
