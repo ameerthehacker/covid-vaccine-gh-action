@@ -29,7 +29,7 @@ module.exports = {
 
 ![twillio-dashboard](./screenshots/twillio-dashboard.png)
 
-* *FROM* is a comma separated list of numbers you wish to send sms to, eg: 9533234554,9533234552
+* *SEND_TO* is a comma separated list of numbers you wish to send sms to, eg: 9533234554,9533234552
 
 ## Caveats
 
