@@ -7,8 +7,8 @@ jobs:
   check_vaccine_availability:
     runs-on: ubuntu-latest
     env:
-      TWILLIO_ACCOUNT_SID: ${{ secrets.TWILLIO_ACCOUNT_SID }}
-      TWILLIO_AUTH_TOKEN: ${{ secrets.TWILLIO_AUTH_TOKEN }}
+      TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+      TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
       SEND_TO: ${{ secrets.SEND_TO }}
       FROM: ${{ secrets.FROM }}
     steps:

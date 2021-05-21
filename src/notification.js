@@ -11,11 +11,11 @@ function formatMessage(sessions) {
 }
 
 async function notify(sessions) {
-  const twillioAccoutSID = process.env.TWILLIO_ACCOUNT_SID;
-  const twillioAuthToken = process.env.TWILLIO_AUTH_TOKEN;
+  const twillioAccoutSID = process.env.TWILIO_ACCOUNT_SID;
+  const twillioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 
   if (!twillioAccoutSID || !twillioAuthToken) {
-    console.error('ERROR: TWILLIO_ACCOUNT_SID or TWILLIO_AUTH_TOKEN environment variables are not set so not sending sms');
+    console.error('ERROR: TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN environment variables are not set so not sending sms');
 
     process.exit(1);
   }

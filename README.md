@@ -18,12 +18,12 @@ module.exports = {
 }
 ```
 * Push the updated config
-* Create a free twillio account, they have a generous 15 USD credit which you can use for sending sms
+* Create a free twilio account, they have a generous 15 USD credit which you can use for sending sms
 * Create following GitHub secrets in your repository, you can read more about it [here](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 ![gh-secret-image](./screenshots/gh-secrets.png)
 
-* You can find the *TWILLIO_ACCOUNT_SID*, *TWILLIO_AUTH_TOKEN*, *FROM* in the twillio dashboard
+* You can find the *TWILIO_ACCOUNT_SID*, *TWILIO_AUTH_TOKEN*, *FROM* in the twilio dashboard
 
 ![twillio-dashboard](./screenshots/twillio-dashboard.png)
 
