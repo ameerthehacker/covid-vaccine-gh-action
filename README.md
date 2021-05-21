@@ -19,6 +19,7 @@ module.exports = {
 ```
 * Push the updated config
 * Create a free twilio account, they have a generous 15 USD credit which you can use for sending sms
+* Verify your mobile numbers in the twilio console https://www.twilio.com/console/phone-numbers/verified
 * Create following GitHub secrets in your repository, you can read more about it [here](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 ![gh-secret-image](./screenshots/gh-secrets.png)
