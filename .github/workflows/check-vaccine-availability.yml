@@ -1,5 +1,7 @@
+name: "Check vaccine slot availability"
 on:
-  push
+  schedule:
+    - cron: "*/5 * * * *"
 
 jobs:
   check_vaccine_availability:
