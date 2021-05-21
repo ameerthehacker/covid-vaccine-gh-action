@@ -8,6 +8,7 @@
 
 * Fork this repo
 * Update the config at *src/config.js*
+* Delete the db file *src/db.json*
 
 ```js
 module.exports = {
