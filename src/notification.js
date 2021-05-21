@@ -11,6 +11,8 @@ function formatMessage(sessions) {
 }
 
 async function notify(sessions) {
+  if (sessions.length === 0) return;
+
   const twillioAccoutSID = process.env.TWILIO_ACCOUNT_SID;
   const twillioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 

@@ -4,7 +4,7 @@
   "description": "GitHub action to get notification whenever vaccine slot is availble in cowin portal",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "NODE_ENV=production node ./src/index.js",
     "dev": "cross-env NODE_ENV=development node ./src/index.js"
   },
   "repository": {
