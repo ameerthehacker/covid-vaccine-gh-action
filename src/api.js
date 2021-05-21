@@ -13,7 +13,6 @@ function getCalendar() {
   } else {
     return new Promise((resolve, reject) => {
       tr.request(url, function (err, res, body) {
-        console.log(body);
         if (!err && res.statusCode == 200) {
           try {
             body = JSON.parse(body);
