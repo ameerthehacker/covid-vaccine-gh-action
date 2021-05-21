@@ -12,6 +12,7 @@ function getCalendar() {
     return request.get(url);
   } else {
     return new Promise((resolve, reject) => {
+      // cowin api is geo fenced so we use tor
       tr.request(url, function (err, res, body) {
         if (!err && res.statusCode == 200) {
           try {

@@ -1,6 +1,6 @@
-name: "Check vaccine availability"
 on:
-  push
+  schedule:
+    - cron:  '*/5 * * * *'
 
 jobs:
   check_vaccine_availability:
@@ -19,8 +19,6 @@ jobs:
           sudo apt-get -y install tor
           sudo sh -c "echo 'EntryNodes {in} StrictNodes1' >> /etc/tor/torrc"
           sudo sh -c "echo 'ExitNodes {in} StrictNodes1' >> /etc/tor/torrc"
-          echo "After updating"
-          cat /etc/tor/torrc
           sudo /etc/init.d/tor restart
 
       - name: Setup node
