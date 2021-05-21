@@ -33,11 +33,17 @@ async function notify(sessions) {
     process.exit(1);
   }
 
+  if (!process.env.FROM) {
+    console.error('ERROR: FROM evironment variale is not set set so not sending the sms');
+
+    process.exit(1);
+  }
+
   const sendTo = process.env.SEND_TO.split(',').map(mobileNumber => `+91${mobileNumber}`);
 
   for (const mobileNumber of sendTo) {
     await request.post(url, {
-      From: '+14243544121',
+      From: process.env.FROM,
       To: mobileNumber,
       Body: content
     }, {

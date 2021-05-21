@@ -8,6 +8,8 @@ jobs:
     env:
       TWILLIO_ACCOUNT_SID: ${{ secrets.TWILLIO_ACCOUNT_SID }}
       TWILLIO_AUTH_TOKEN: ${{ secrets.TWILLIO_AUTH_TOKEN }}
+      SEND_TO: ${{ secrets.SEND_TO }}
+      FROM: ${{ secrets.FROM }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,6 +19,9 @@ jobs:
           sudo apt-get -y install tor
           sudo sh -c "echo 'EntryNodes {in} StrictNodes1' >> /etc/tor/torrc"
           sudo sh -c "echo 'ExitNodes {in} StrictNodes1' >> /etc/tor/torrc"
+          echo "After updating"
+          cat /etc/tor/torrc
+          sudo /etc/init.d/tor restart
 
       - name: Setup node
         uses: actions/setup-node@v1
@@ -27,7 +32,7 @@ jobs:
         run: npm install
 
       - name: Run the script
-        run: tor & npm start
+        run: npm start
         
       - name: Commit files
         run: |

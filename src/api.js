@@ -8,11 +8,12 @@ function getCalendar() {
   const today = getTodayDate();
   const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
 
-  if (process.env === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     return request.get(url);
   } else {
     return new Promise((resolve, reject) => {
       tr.request(url, function (err, res, body) {
+        console.log(body);
         if (!err && res.statusCode == 200) {
           try {
             body = JSON.parse(body);
