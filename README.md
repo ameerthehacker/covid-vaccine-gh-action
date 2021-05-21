@@ -31,9 +31,11 @@ module.exports = {
 
 ## Caveats
 
-Since the Cowin api is geofenced and we cannot control the region of GitHub action we use the tor network, 
+* Since the Cowin api is geofenced and we cannot control the region of GitHub action we use the tor network, 
 I have hardcoded a exit node in the action file as some of the exit nodes are from digital ocean and Cowin blocks their servers also. 
 If the hardcoded exit node goes away just find a new india exit node ip from https://www.bigdatacloud.com/insights/tor-exit-nodes and replace it.
+* We have cron job every 5m but GitHub does not promise to follow it strictly so the action might execute every 15m to 30m based on GitHub server loads.
+* The actions might fail for few times in the start and then will get stablized.
 
 ```yml
 - name: Install Tor
