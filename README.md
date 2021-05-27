@@ -15,6 +15,8 @@ module.exports = {
   // options in the array form a "or" condition while filtering
   minAge: [45, 18],
   pincode: "560008",
+  // only pincode or districtId can be provided
+  districtId: "265",
   vaccines: ['COVISHIELD', 'COVAXIN', 'SPUTNIK V']
 }
 ```
