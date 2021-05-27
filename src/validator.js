@@ -1,11 +1,18 @@
 function validateConfig(config) {
   const availableVaccines = ['COVISHIELD', 'COVAXIN', 'SPUTNIK V'];
 
-  if (!config.pincode) {
-    console.error('no pincode was provided in the config');
+  if (!config.pincode && !config.districtId) {
+    console.error('no pincode or districtId was provided in the config');
 
     process.exit(1);
   }
+
+  if (config.pincode && config.districtId) {
+    console.error('both pincode and districtId can be provided in the config');
+
+    process.exit(1);
+  }
+
   const ageFilters = config.minAge || [];
 
   for (const ageFilter of ageFilters) {

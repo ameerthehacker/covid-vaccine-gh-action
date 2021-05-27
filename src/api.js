@@ -6,7 +6,9 @@ const tr = require('tor-request');
 
 function getCalendar() {
   const today = getTodayDate();
-  const url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
+
+  const url = config.districtId? 
+  `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?district_id=${config.districtId}&date=${today}`: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
 
   if (process.env.NODE_ENV === 'development') {
     return request.get(url);
