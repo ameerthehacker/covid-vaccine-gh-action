@@ -8,7 +8,7 @@ function getCalendar() {
   const today = getTodayDate();
 
   const url = config.districtId? 
-  `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarBy${config.districtId? 'District': 'pin'}?district_id=${config.districtId}&date=${today}`: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
+  `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarBy${config.districtId? 'District': 'Pin'}?district_id=${config.districtId}&date=${today}`: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${config.pincode}&date=${today}`;
 
   console.log(url);
 
